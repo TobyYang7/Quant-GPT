@@ -7,7 +7,7 @@ MODEL_NAME="v1"
 # MODEL_PATH="/home/zhangmin/.cache/modelscope/hub/LLM-Research/Meta-Llama-3-8B-Instruct"
 MODEL_PATH="qwen/Qwen-7B-Chat"
 
-deepspeed --num_gpus 4 run_exp.py \
+deepspeed --num_gpus 1 run_exp.py \
     --stage sft \
     --do_train \
     --model_name_or_path $MODEL_PATH \
@@ -15,7 +15,7 @@ deepspeed --num_gpus 4 run_exp.py \
     --dataset_dir ./ \
     --template 	qwen \
     --finetuning_type lora \
-    --output_dir ./saves/$MODEL_NAME \
+    --output_dir /root/autodl-tmp/saves/$MODEL_NAME \
     --overwrite_cache \
     --overwrite_output_dir \
     --cutoff_len 8192 \
