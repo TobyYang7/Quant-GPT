@@ -132,7 +132,7 @@ tokenizers==0.19.1
 tomli==2.0.1
 tomlkit==0.12.0
 toolz==0.12.1
-torch==2.3.0
+torch==2.2.0
 tqdm==4.66.4
 transformers==4.40.1
 transformers-stream-generator==0.0.5
@@ -152,3 +152,4 @@ xxhash==3.4.1
 yapf==0.40.2
 yarl==1.9.4
 zipp==3.18.1
+flash-attn==2.5.6
