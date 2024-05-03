@@ -1,0 +1,10 @@
+{
+  "ft_data_train": {
+    "file_name": "../data/ft_data/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  }
+}
