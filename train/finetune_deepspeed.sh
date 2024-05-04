@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export MODELSCOPE_CACHE='/root/autodl-tmp'
+# export MODELSCOPE_CACHE='/root/autodl-tmp'
 export USE_MODELSCOPE_HUB=1
 DATASET_NAME="ft_data_train,ft_data_test"
 MODEL_NAME="v1"
