@@ -6,5 +6,13 @@
       "query": "content",
       "response": "label"
     }
+  },
+    "ft_data_test": {
+    "file_name": "../data/ft_data/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
   }
 }
