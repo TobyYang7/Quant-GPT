@@ -29,5 +29,15 @@
       "prompt": "prompt",
       "response": "expected"
     }
+  },
+  "ORPO": {
+    "hf_hub_url": "hiyouga/DPO-En-Zh-20k",
+    "subset": "zh",
+    "ranking": true,
+    "columns": {
+      "prompt": "prompt",
+      "response": "answer",
+      "system": "system"
+    }
   }
 }

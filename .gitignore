@@ -5,3 +5,4 @@ apikey.txt
 !/data/test_dataset/*
 /src
 /exp_model
+/train/cache/*
