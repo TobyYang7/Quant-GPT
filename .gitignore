@@ -1,4 +1,4 @@
 apikey.txt
 /data/*
 !/data/ft_data/
-/src/*
+/src
