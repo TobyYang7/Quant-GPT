@@ -2,5 +2,6 @@ apikey.txt
 /data/*
 !/data/ft_data/
 !/data/*.ipynb
+!/data/test_dataset/*
 /src
 /exp_model

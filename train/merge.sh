@@ -2,7 +2,7 @@
 # DO NOT use quantized model or quantization_bit when merging lora weights
 
 export USE_MODELSCOPE_HUB=1
-MODEL_NAME="v1"
+MODEL_NAME="v2"
 
 CUDA_VISIBLE_DEVICES=3 python exp_model.py \
     --model_name_or_path  qwen/Qwen-7B-Chat \
