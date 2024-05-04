@@ -7,12 +7,27 @@
       "response": "label"
     }
   },
-    "ft_data_test": {
+  "ft_data_test": {
     "file_name": "../data/ft_data/test.json",
     "columns": {
       "prompt": "prompt",
       "query": "content",
       "response": "label"
+    }
+  },
+  "sentiment": {
+    "file_name": "../data/sentiment/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "query",
+      "response": "label"
+    }
+  },
+  "test": {
+    "file_name": "../data/test_dataset/results.json",
+    "columns": {
+      "prompt": "prompt",
+      "response": "expected"
     }
   }
 }
