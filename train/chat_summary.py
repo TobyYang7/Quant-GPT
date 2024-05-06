@@ -32,11 +32,16 @@ def calculate_token_length(text):
     return len(tokens)
 
 def summary(model, content):
-    if calculate_token_length(content) >= 2048:
+    content_token = calculate_token_length(content)
+    if content_token >= 2048:
         # binary split and overlap in the central text
         split_content = content.split('\n')
-        summary1 = summary(model, "请您帮忙总结下面的切分内容（部分内容可能截断），尽可能不损失对投资有用的信息" + ('\n').join(split_content[:int(len(split_content)/3*2)]))
-        summary2 = summary(model, "请您帮忙总结下面的切分内容（部分内容可能截断），尽可能不损失对投资有用的信息" + ('\n').join(split_content[int(len(split_content)/3*1):]))
+        if content_token < 1e4:
+            summary1 = summary(model, "请您帮忙总结下面的切分内容（部分内容可能截断），尽可能不损失对投资有用的信息" + ('\n').join(split_content[:int(len(split_content)/9*5)]))
+            summary2 = summary(model, "请您帮忙总结下面的切分内容（部分内容可能截断），尽可能不损失对投资有用的信息" + ('\n').join(split_content[int(len(split_content)/9*4):]))
+        else:
+            summary1 = summary(model, "请您帮忙总结下面的切分内容（部分内容可能截断），尽可能不损失对投资有用的信息" + ('\n').join(split_content[:int(len(split_content)/15*8)]))
+            summary2 = summary(model, "请您帮忙总结下面的切分内容（部分内容可能截断），尽可能不损失对投资有用的信息" + ('\n').join(split_content[int(len(split_content)/15*7):]))
         print(summary1, '\n', summary2)
         final_summary = summary(model, "请您帮忙总结下面拼接的内容（中间部分内容可能重叠），尽可能不损失对投资有用的信息" + summary1 + '\n' +  summary2)
         print(final_summary)
@@ -46,7 +51,7 @@ def summary(model, content):
     
 stock_list = ["600031.SH", "600036.SH", "600050.SH", "600104.SH", "600346.SH", "600570.SH", "600887.SH", "601390.SH", "603160.SH", "601668.SH"]
 for stock in tqdm(stock_list):
-    parquet_file = pq.ParquetFile('../data/announcement/' + stock + '.parquet')
+    parquet_file = pq.ParquetFile('data/announcement/' + stock + '.parquet')
     news = parquet_file.read().to_pandas()
     contents = news.content
     summaries = []
@@ -62,4 +67,4 @@ for stock in tqdm(stock_list):
     news.summary = summaries
     news.summary_token_len = summary_token_lens
     table = pa.Table.from_pandas(news)
-    pq.write_table(table, '../data/announcement/' + stock + '_summary' + '.parquet')
+    pq.write_table(table, 'data/announcement/' + stock + '_summary' + '.parquet')
