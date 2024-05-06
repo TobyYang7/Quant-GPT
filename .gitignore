@@ -6,3 +6,4 @@ apikey.txt
 /src
 /exp_model
 /train/cache/*
+chat_summary.log
