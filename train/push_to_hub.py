@@ -8,3 +8,8 @@ api.push_model(
     model_id="TobyYang7/Quant-GPT",
     model_dir="../exp_model/v2_14b"
 )
+# from transformers import AutoModelForCausalLM, AutoTokenizer
+
+# model_name = "BAAI/bge-m3"
+# model = AutoModelForCausalLM.from_pretrained(model_name)
+# tokenizer = AutoTokenizer.from_pretrained(model_name)
