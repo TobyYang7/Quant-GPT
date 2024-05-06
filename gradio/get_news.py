@@ -2,7 +2,6 @@ import pandas as pd
 from datetime import datetime, timedelta
 
 
-
 # TODO: 新闻类型筛选
 def get_news(time_period, file_path='A_news_train.feather'):
     df = pd.read_feather(file_path)
@@ -18,6 +17,7 @@ def get_news(time_period, file_path='A_news_train.feather'):
             Index_end = i
             break
     return df[Index_end:].reset_index()
+
 
 if __name__ == "__main__":
     df = get_news(70)

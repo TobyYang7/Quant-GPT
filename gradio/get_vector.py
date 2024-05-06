@@ -3,6 +3,7 @@ import numpy as np
 import json
 from FlagEmbedding import BGEM3FlagModel
 
+
 def write_vecs(df_news, embedding_model_path):
     model = BGEM3FlagModel(embedding_model_path,  use_fp16=True)
 # 逐行添加新列
@@ -17,7 +18,6 @@ def write_vecs(df_news, embedding_model_path):
         df_news.at[idx, 'lexical_weights'] = embedding_result['lexical_weights']
     df_news.to_feather('A_news_train_last1000_withvector.feather')
     return df_news
-        
 
 
 if __name__ == "__main__":
