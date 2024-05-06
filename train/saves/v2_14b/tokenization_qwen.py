@@ -17,7 +17,7 @@ from transformers import PreTrainedTokenizer, AddedToken
 logger = logging.getLogger(__name__)
 
 
-VOCAB_FILES_NAMES = {"vocab_file": "qwen_finance.tiktoken"}
+VOCAB_FILES_NAMES = {"vocab_file": "qwen.tiktoken"}
 
 PAT_STR = r"""(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\p{L}\p{N}]?\p{L}+|\p{N}| ?[^\s\p{L}\p{N}]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"""
 ENDOFTEXT = "<|endoftext|>"
@@ -74,7 +74,7 @@ class QWenTokenizer(PreTrainedTokenizer):
 
         # how to handle errors in decoding UTF-8 byte sequences
         # use ignore if you are in streaming inference
-        self.errors = errors  
+        self.errors = errors
 
         self.mergeable_ranks = _load_tiktoken_bpe(vocab_file)  # type: Dict[bytes, int]
         self.special_tokens = {

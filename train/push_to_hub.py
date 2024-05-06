@@ -6,5 +6,5 @@ api = HubApi()
 api.login(YOUR_ACCESS_TOKEN)
 api.push_model(
     model_id="TobyYang7/Quant-GPT",
-    model_dir="../exp_model/v1"
+    model_dir="../exp_model/v2_14b"
 )
