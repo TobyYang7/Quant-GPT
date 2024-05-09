@@ -39,5 +39,21 @@
       "response": "answer",
       "system": "system"
     }
+  },
+  "ft_data_32k_train": {
+    "file_name": "../data/ft_data_32k/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_32k_test": {
+    "file_name": "../data/ft_data_32k/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
   }
 }

@@ -11,6 +11,7 @@ import numpy as np
 from tqdm import tqdm
 from datetime import datetime
 from datetime import timedelta
+from modelscope import AutoTokenizer, snapshot_download
 
 #%%
 def cal_log_return(data: pd.DataFrame, k: int):
@@ -110,14 +111,21 @@ def binary_search(arr, target):
             right = mid
     return right
 
-def prepare_k_items_announcement_with_time_restriction(stock_prices: pd.DataFrame, unique_stocks_list: list, k: int, t_limit: int = None):
+def prepare_k_items_announcement_with_time_restriction(stock_prices: pd.DataFrame, unique_stocks_list: list, k: int, t_limit: int = None, token_limit: int = 3.2*1e4):
     combined_info = []
     stock_symbols = []
     log_rs = []
     trading_time = []
+    model_dir = snapshot_download('TongyiFinance/Tongyi-Finance-14B-Chat')
+    tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
+
+    def calculate_token_length(text):
+        nonlocal tokenizer
+        tokens = tokenizer.encode(text, truncation=True)
+        return len(tokens)
 
     for stock in tqdm(unique_stocks_list):
-        parquet_file = pq.ParquetFile('../data/announcement/' + stock + '.parquet')
+        parquet_file = pq.ParquetFile('../data/announcement/' + stock + '_filter_32k.parquet')
         news = parquet_file.read().to_pandas()
         news = news.sort_values("rec_time").reset_index(drop=True)
 
@@ -126,7 +134,8 @@ def prepare_k_items_announcement_with_time_restriction(stock_prices: pd.DataFram
 
         working_list = []
         news_times = []
-
+        token_len = []
+        
         j = 0 # i is the pointer for stock_price, j is the pointer for stock_price
         while j < len(news):
             news_time = datetime.strptime(news.loc[j, 'rec_time'], '%Y-%m-%d %H:%M:%S')
@@ -134,19 +143,32 @@ def prepare_k_items_announcement_with_time_restriction(stock_prices: pd.DataFram
 
             return_time = stock_price.bob[i].replace(tzinfo=None)
             news_time = datetime.strptime(news.rec_time[j], '%Y-%m-%d %H:%M:%S')
+            
             if t_limit:
                 if len(news_times) > 0:
                     while news_times[0] < return_time - timedelta(days=t_limit):
                         working_list.pop(0)
                         news_times.pop(0)
+                        token_len.pop(0)
                         if len(news_times) == 0:
                             break
             if len(working_list) >= k:
                 working_list.pop(0)
                 news_times.pop(0)
+                token_len.pop(0)
+            while sum(token_len) > token_limit - news.content_token_len[j]:
+                working_list.pop(0)
+                news_times.pop(0)
+                token_len.pop(0)
+                if len(news_times) == 0:
+                    Warning("The original data token limit exceeded")
+                    break
+                
+            token_len.append(news.content_token_len[j])
             working_list.append(news.content[j])
             news_times.append(news_time)
             combined_info.append(f"现在是{stock_price.bob[i]}\n" + "\n".join(working_list))
+            assert(calculate_token_length(combined_info[-1]) < token_limit)
             stock_symbols.append(stock)
             log_rs.append(stock_price.log_r[i])
             trading_time.append(return_time)
@@ -165,8 +187,8 @@ if __name__ == '__main__':
     print(stock_prices)
     log_r = prepare_k_days_return(stock_prices, 1)
     unique_stocks_list = ["600031.SH", "600036.SH", "600050.SH", "600104.SH", "600346.SH", "600570.SH", "600887.SH", "601390.SH", "603160.SH", "601668.SH"]
-    data = prepare_k_items_announcement_with_time_restriction(log_r, unique_stocks_list, 3, 30)
+    data = prepare_k_items_announcement_with_time_restriction(log_r, unique_stocks_list, 10, 30, 3.2*1e4)
 # %%
     table = pa.Table.from_pandas(data)
-    pq.write_table(table, '../data/announcement/processed_LLM_data_1_3_30.parquet')
+    pq.write_table(table, '../data/announcement/processed_LLM_data_1_10_30_32k.parquet')
 # %%

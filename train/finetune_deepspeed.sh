@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# export MODELSCOPE_CACHE='/root/autodl-tmp'
-# export USE_MODELSCOPE_HUB=1
-DATASET_NAME="ORPO"
+export MODELSCOPE_CACHE='/root/autodl-tmp'
+export USE_MODELSCOPE_HUB=1
+DATASET_NAME="ft_data_32k_train,ft_data_32k_test"
 MODEL_NAME="v3"
-# MODEL_PATH="/home/zhangmin/.cache/modelscope/hub/LLM-Research/Meta-Llama-3-8B-Instruct"
-MODEL_PATH="../exp_model/v2"
+MODEL_PATH="TongyiFinance/Tongyi-Finance-14B-Chat"
+# MODEL_PATH="../exp_model/v2"
 
-deepspeed --num_gpus 4 run_exp.py \
+deepspeed --num_gpus 2 run_exp.py \
     --stage orpo \
     --do_train \
     --model_name_or_path $MODEL_PATH \
@@ -18,8 +18,8 @@ deepspeed --num_gpus 4 run_exp.py \
     --output_dir ../exp_model/$MODEL_NAME \
     --overwrite_cache \
     --overwrite_output_dir \
-    --cutoff_len 8192 \
-    --vllm_maxlen 8192 \
+    --cutoff_len 32768 \
+    --vllm_maxlen 32768 \
     --preprocessing_num_workers 32 \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
@@ -39,7 +39,8 @@ deepspeed --num_gpus 4 run_exp.py \
     --ddp_timeout 180000000 \
     --eval_steps 500 \
     --save_steps 500 \
-    --val_size 0.1
+    --val_size 0.1 \
+    --shift_attn
     # --weight_decay 0.01 \
     # --max_samples 100 \
     # --print_param_status \
