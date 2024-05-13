@@ -62,5 +62,8 @@ df = pro.cctv_news(date='20230101')
 # %%
 import pandas as pd
 
-A_news_labeled = pd.read_feather("../data/cleaned_data/A_news_labeled.feather")
+A_news_test = pd.read_feather("../data/cleaned_news/A_news_test.feather")
+A_news_train = pd.read_feather("../data/cleaned_news/A_news_train.feather")
 
+
+# %%

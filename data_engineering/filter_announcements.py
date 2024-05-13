@@ -22,7 +22,7 @@ for stock in tqdm(stock_list):
     for c in news.loc[:, "content"]:
         token = calculate_token_length(c)
         # control the token under 3.2 * 1e4 (32k)
-        if token > 3.2 * 1e4:
+        if token > 1.6 * 1e4:
             new_content.append(np.nan)
         else:
             new_content.append(c)
@@ -31,4 +31,4 @@ for stock in tqdm(stock_list):
     news.loc[:, "content_token_len"] = content_token_len
     news.dropna(inplace = True)
     table = pa.Table.from_pandas(news)
-    pq.write_table(table, 'data/announcement/' + stock + '_filter_32k' + '.parquet')
+    pq.write_table(table, 'data/announcement/' + stock + '_filter_16k' + '.parquet')
