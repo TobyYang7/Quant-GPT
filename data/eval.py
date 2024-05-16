@@ -15,12 +15,12 @@ model_path = "/home/zhangmin/.cache/modelscope/hub/qwen/Qwen-7B-Chat"
 model = ChatModel(dict(
     model_name_or_path=model_path,
     template="qwen",
-    temperature=0.6,
-    top_p=0.8,
+    temperature=0.5,
+    top_p=0.7,
     cutoff_len=8192,
     do_sample=True,
     max_new_tokens=256,
-    adapter_name_or_path="/home/zhangmin/toby/Quant-GPT/train/saves/v6_cp200",
+    adapter_name_or_path="/home/zhangmin/toby/Quant-GPT/train/saves/v6_cp300",
     # infer_backend="vllm",
     # vllm_gpu_util=0.9
 ))
@@ -76,7 +76,7 @@ def evaluate_accuracy(model, test_data):
     results = []
     correct_predictions = 0
     total_predictions = 0
-    output_file = 'test_dataset/v6_cp200.json'
+    output_file = 'test_dataset/v6_cp300.json'
 
     with tqdm(total=test_data.shape[0]) as pbar:
         for _, item in test_data.iterrows():
@@ -99,7 +99,6 @@ def evaluate_accuracy(model, test_data):
             pbar.set_description(f"{correct_predictions}/{total_predictions}, {predicted_response}, {expected_response}, {expected_response == predicted_response}")
             pbar.update()
 
-            # 实时更新JSON文件
             with open(output_file, 'w') as f:
                 json.dump(results, f, indent=4, ensure_ascii=False)
 
@@ -107,7 +106,7 @@ def evaluate_accuracy(model, test_data):
 
 
 max_samples = 1400
-test_data = pd.read_json('ft_data_summary_2k_test.json')
+test_data = pd.read_json('ft_data_summary_2k_test_3.json')
 # test_data = test_data.sample(frac=1).reset_index(drop=True)
 test_data = test_data[:max_samples]
 

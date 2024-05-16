@@ -2,7 +2,6 @@ apikey.txt
 /data/*
 !/data/*.ipynb
 !/data/*.py
-!/data/test_dataset/*
 /src
 /exp_model
 /train/cache/*
@@ -11,3 +10,4 @@ chat_summary.log
 qwen.cpp/*
 /train/saves/*
 /gradio/*.feather
+.vscode/*

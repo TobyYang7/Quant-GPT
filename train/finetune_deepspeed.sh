@@ -2,12 +2,13 @@
 
 # export MODELSCOPE_CACHE='/root/autodl-tmp'
 export USE_MODELSCOPE_HUB=1
-DATASET_NAME="ft_data_s_train,ft_data_s_test"
-MODEL_NAME="v4"
+export CUDA_VISIBLE_DEVICES=2,3
+DATASET_NAME="sentiment"
+MODEL_NAME="v7"
 MODEL_PATH="qwen/Qwen-7B-Chat"
 # MODEL_PATH="TongyiFinance/Tongyi-Finance-14B-Chat"
 
-deepspeed --num_gpus 4 run_exp.py \
+deepspeed --num_gpus 2 run_exp.py \
     --stage sft \
     --do_train \
     --model_name_or_path $MODEL_PATH \
