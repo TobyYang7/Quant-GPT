@@ -19,7 +19,7 @@ import Levenshtein
 
 def query_recognition(query, history):
     print('Start query_recognition')
-    
+
     prompt = f'请根据用户输入的内容判断其类别。如果输入内容是一则公司公告，请回复公司公告；如果内容不是公司公告，请回复日常问答。您的回答只能严格为[公司公告,日常问答]中的一个\
 以下是一些示例，以帮助您区分:\
 公司公告示例: 浙江华铁应急设备科技股份有限公司发布了一份关于对外担保进展的公告。主要内容包括：公司新增对外担保金额合计111,791.16万元，其中担保人包括华铁大黄蜂、华铁应急、华铁宇硕、浙江大黄蜂等，被担保人包括华铁供应链、浙江吉通、华铁应急等。\
@@ -267,7 +267,8 @@ if __name__ == "__main__":
         top_p=0.8,
         cutoff_len=8192,
         do_sample=True,
-        max_new_tokens=1024
+        max_new_tokens=1024,
+        adapter_name_or_path="/home/zhangmin/toby/Quant-GPT/train/saves/v6_cp300",
         # infer_backend="vllm",
         # vllm_gpu_util=0.7
     ))
