@@ -1,0 +1,99 @@
+{
+  "ft_data_train": {
+    "file_name": "../data/ft_data/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_test": {
+    "file_name": "../data/ft_data/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "sentiment": {
+    "file_name": "../data/sentiment/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "query",
+      "response": "label"
+    }
+  },
+  "test": {
+    "file_name": "../data/test_dataset/results.json",
+    "columns": {
+      "prompt": "prompt",
+      "response": "expected"
+    }
+  },
+  "ORPO": {
+    "hf_hub_url": "hiyouga/DPO-En-Zh-20k",
+    "subset": "zh",
+    "ranking": true,
+    "columns": {
+      "prompt": "prompt",
+      "response": "answer",
+      "system": "system"
+    }
+  },
+  "ft_data_32k_train": {
+    "file_name": "../data/ft_data_32k/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_32k_test": {
+    "file_name": "../data/ft_data_32k/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_s_train": {
+    "file_name": "../data/ft_data_summary_with_macro/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_s_test": {
+    "file_name": "../data/ft_data_summary_with_macro/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_2k_train": {
+    "file_name": "../data/ft_data_summary_2k/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_2k_test": {
+    "file_name": "../data/ft_data_summary_2k/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_2k_train_3": {
+    "file_name": "../data/ft_data_2k_train_3.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  }
+}
