@@ -1,10 +1,12 @@
 # Quant-GPT
 
-Yuzhe Yang [@TobyYang7](mailto:yuzheyang@link.cuhk.edu.cn)
+Authors:
 
-Kangqi Yu [@KyleYu2003](mailto:kangqiyu@link.cuhk.edu.cn)
+- Yuzhe Yang [@TobyYang7](mailto:yuzheyang@link.cuhk.edu.cn)
 
-Junquan Peng [@pengjunquan-l](mailto:junquanpeng@link.cuhk.edu.cn)
+- Kangqi Yu [@KyleYu2003](mailto:kangqiyu@link.cuhk.edu.cn)
+
+- Junquan Peng [@pengjunquan-l](mailto:junquanpeng@link.cuhk.edu.cn)
 
 ## Demo
 
