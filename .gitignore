@@ -11,3 +11,5 @@ qwen.cpp/*
 /train/saves/*
 /gradio/*.feather
 .vscode/*
+train/wandb/*
+train/cache/*

@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # export MODELSCOPE_CACHE='/root/autodl-tmp'
-export USE_MODELSCOPE_HUB=1
-export CUDA_VISIBLE_DEVICES=2,3
-DATASET_NAME="sentiment"
-MODEL_NAME="v7"
-MODEL_PATH="qwen/Qwen-7B-Chat"
+# export USE_MODELSCOPE_HUB=1
+# export CUDA_VISIBLE_DEVICES=1,2
+DATASET_NAME="ft_data_industry_train"
+MODEL_NAME="s6"
+MODEL_PATH="/home/zhangmin/.cache/modelscope/hub/qwen/Qwen-7B-Chat"
 # MODEL_PATH="TongyiFinance/Tongyi-Finance-14B-Chat"
 
-deepspeed --num_gpus 2 run_exp.py \
+deepspeed --num_gpus 3 run_exp.py \
     --stage sft \
     --do_train \
     --model_name_or_path $MODEL_PATH \
@@ -16,7 +16,7 @@ deepspeed --num_gpus 2 run_exp.py \
     --dataset_dir ./ \
     --template 	qwen \
     --finetuning_type lora \
-    --output_dir ../exp_model/$MODEL_NAME \
+    --output_dir ./saves/$MODEL_NAME \
     --overwrite_cache \
     --overwrite_output_dir \
     --cutoff_len 8196 \
@@ -24,7 +24,7 @@ deepspeed --num_gpus 2 run_exp.py \
     --preprocessing_num_workers 64 \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
-    --gradient_accumulation_steps 8 \
+    --gradient_accumulation_steps 4 \
     --lr_scheduler_type cosine \
     --logging_steps 5 \
     --warmup_ratio 0.05 \
@@ -38,10 +38,10 @@ deepspeed --num_gpus 2 run_exp.py \
     --do_eval false \
     --deepspeed ds_z3_config.json \
     --ddp_timeout 180000000 \
-    --eval_steps 500 \
-    --save_steps 500 \
+    --eval_steps 100 \
+    --save_steps 100 \
     --val_size 0.05 \
-    --max_samples 1000
+    # --new_special_tokens "Strat"
     # --shift_attn
     # --weight_decay 0.01 \
     # --max_samples 100 \

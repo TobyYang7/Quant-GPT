@@ -31,7 +31,7 @@ def extract_json_predict_result(data):
 
 #%%
 if __name__ == '__main__':
-    file_path = "/home/zhangmin/toby/Quant-GPT/data/test_dataset/v6_cp200.json"
+    file_path = "/home/zhangmin/toby/Quant-GPT/data/test_dataset/s3.json"
 
     with open(file_path, "r") as file:
         data = json.load(file)
@@ -40,5 +40,5 @@ if __name__ == '__main__':
 # %%
     predict_result.sort_values(by = "time", inplace = True)
     predict_result.reset_index(inplace = True, drop = True)
-    predict_result.to_csv("./result/Quant-GPT2.csv")
+    predict_result.to_csv("./result/Quant-GPT.csv")
 # %%

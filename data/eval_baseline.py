@@ -12,19 +12,20 @@ from llmtuner import ChatModel
 # model_path = "/home/zhangmin/.cache/modelscope/hub/TongyiFinance/Tongyi-Finance-14B-Chat"
 # model_path = "/home/zhangmin/.cache/modelscope/hub/ZhipuAI/chatglm3-6b-128k"
 
-name = 's6'
+name = 'glm3'
+# path = 'ft_data_2k_more_2/test.json'
 path = 'ft_data_2k_more_2_test.json'
 
-model_path = "/home/zhangmin/.cache/modelscope/hub/qwen/Qwen-7B-Chat"
+model_path = "/home/zhangmin/.cache/modelscope/hub/ZhipuAI/chatglm3-6b"
 model = ChatModel(dict(
     model_name_or_path=model_path,
-    template="qwen",
+    template="chatglm3",
     temperature=0.3,
-    top_p=0.2,
+    top_p=0.8,
     cutoff_len=8192,
     do_sample=True,
-    max_new_tokens=256,
-    adapter_name_or_path=f"/home/zhangmin/toby/Quant-GPT/train/saves/s6",
+    max_new_tokens=128,
+    # adapter_name_or_path=f"../exp_model/fingpt",
     # infer_backend="vllm",
     # vllm_gpu_util=0.9
 ))
@@ -84,7 +85,7 @@ def evaluate_accuracy(model, test_data):
 
     with tqdm(total=test_data.shape[0]) as pbar:
         for _, item in test_data.iterrows():
-            text_input = f'''{item['prompt']}\n{item['content']}'''
+            text_input = f'''{item['prompt']}+给出你的建议，如果你无法回答的话，则选择：中性\n{item['content']}'''
             predicted_response = predict(model, text_input).replace(" ", "")
 
             expected_response = item['label']

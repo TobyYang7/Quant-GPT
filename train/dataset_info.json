@@ -19,7 +19,7 @@
     "file_name": "../data/sentiment/train.json",
     "columns": {
       "prompt": "prompt",
-      "query": "query",
+      "query": "content",
       "response": "label"
     }
   },
@@ -90,6 +90,134 @@
   },
   "ft_data_2k_train_3": {
     "file_name": "../data/ft_data_2k_train_3.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_summary_min_2k_train": {
+    "file_name": "../data/ft_data_summary_min_2k/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_summary_min_2k_test": {
+    "file_name": "../data/ft_data_summary_min_2k/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_summary_min_2k_15_train": {
+    "file_name": "../data/ft_data_summary_min_2k_15/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_summary_min_2k_15_test": {
+    "file_name": "../data/ft_data_summary_min_2k_15/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_summary_90_train": {
+    "file_name": "../data/ft_data_summary_90/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_summary_90_test": {
+    "file_name": "../data/ft_data_summary_90/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_5_5_10_2k_train": {
+    "file_name": "../data/ft_data_5_5_10_2k/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_5_5_10_2k_test": {
+    "file_name": "../data/ft_data_5_5_10_2k/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_2k_more_train": {
+    "file_name": "../data/ft_data_2k_more/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_2k_more_test": {
+    "file_name": "../data/ft_data_2k_more/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_2k_more_3_train": {
+    "file_name": "../data/ft_data_2k_more_3/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_2k_more_3_test": {
+    "file_name": "../data/ft_data_2k_more_3/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_2k_more_2_train": {
+    "file_name": "../data/ft_data_2k_more_2/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_2k_more_2_test": {
+    "file_name": "../data/ft_data_2k_more_2/test.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_industry_train": {
+    "file_name": "../data/ft_data_industry/train.json",
+    "columns": {
+      "prompt": "prompt",
+      "query": "content",
+      "response": "label"
+    }
+  },
+  "ft_data_industry_test": {
+    "file_name": "../data/ft_data_industry/train.json",
     "columns": {
       "prompt": "prompt",
       "query": "content",
